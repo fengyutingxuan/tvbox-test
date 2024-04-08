@@ -46,6 +46,10 @@ public class JarLoader {
             File cacheDir = new File(App.getInstance().getCacheDir().getAbsolutePath() + "/catvod_csp");
             if (!cacheDir.exists())
                 cacheDir.mkdirs();
+            File jar_file = new File(jar);
+            if(jar_file.canWrite() || jar_file.canExecute()){
+                jar_file.setReadOnly();
+            }
             DexClassLoader classLoader = new DexClassLoader(jar, cacheDir.getAbsolutePath(), null, App.getInstance().getClassLoader());
             // make force wait here, some device async dex load
             int count = 0;

@@ -3,12 +3,21 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         minSdk 21
-        targetSdk 29
+        targetSdk 34
     }
+    buildTypes {
+        release {
+            ndk {
+                //noinspection ChromeOsAbiSupport
+                abiFilters "armeabi-v7a", "arm64-v8a"
+            }
+        }
+    }
+    namespace 'com.whl.quickjs.android'
 }
 
 dependencies {
